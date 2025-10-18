@@ -43,7 +43,7 @@ func NewTileFetcher(tileProvider *TileProvider, cache TileCache, online bool) *T
 	t := new(TileFetcher)
 	t.tileProvider = tileProvider
 	t.cache = cache
-	t.userAgent = "Mozilla/5.0+(compatible; go-staticmaps/0.1; https://github.com/flopp/go-staticmaps)"
+	t.userAgent = "Mozilla/5.0+(compatible; go-staticmaps/0.1; https://github.com/shafiee-ali/go-staticmaps)"
 	t.online = online
 	t.client = http.DefaultClient
 	return t

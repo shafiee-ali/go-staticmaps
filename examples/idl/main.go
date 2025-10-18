@@ -5,9 +5,9 @@ package main
 import (
 	"image/color"
 
-	sm "github.com/flopp/go-staticmaps"
 	"github.com/fogleman/gg"
 	"github.com/golang/geo/s2"
+	sm "github.com/shafiee-ali/go-staticmaps"
 )
 
 func main() {
