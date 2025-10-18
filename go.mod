@@ -1,4 +1,4 @@
-module github.com/shafiee-ali/go-staticmaps
+module github.com/shafiee-ali/go-staticmap
 
 go 1.23.0
 

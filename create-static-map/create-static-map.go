@@ -16,7 +16,7 @@ import (
 	"github.com/fogleman/gg"
 	"github.com/golang/geo/s2"
 	"github.com/jessevdk/go-flags"
-	sm "github.com/shafiee-ali/go-staticmaps"
+	sm "github.com/shafiee-ali/go-staticmap"
 )
 
 func handleTypeOption(ctx *sm.Context, parameter string, thunderforestAPIKey string) {

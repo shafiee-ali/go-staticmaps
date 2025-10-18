@@ -9,7 +9,7 @@ import (
 
 	"github.com/fogleman/gg"
 	"github.com/golang/geo/s2"
-	sm "github.com/shafiee-ali/go-staticmaps"
+	sm "github.com/shafiee-ali/go-staticmap"
 )
 
 // Star represents a 5-pointed star on the map

@@ -5,7 +5,7 @@ package main
 import (
 	"github.com/fogleman/gg"
 	"github.com/golang/geo/s2"
-	sm "github.com/shafiee-ali/go-staticmaps"
+	sm "github.com/shafiee-ali/go-staticmap"
 )
 
 func main() {
