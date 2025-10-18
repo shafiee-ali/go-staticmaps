@@ -29,6 +29,7 @@ type TileFetcher struct {
 	cache        TileCache
 	userAgent    string
 	online       bool
+	client       *http.Client
 }
 
 // Tile defines a single map tile
@@ -44,7 +45,13 @@ func NewTileFetcher(tileProvider *TileProvider, cache TileCache, online bool) *T
 	t.cache = cache
 	t.userAgent = "Mozilla/5.0+(compatible; go-staticmaps/0.1; https://github.com/flopp/go-staticmaps)"
 	t.online = online
+	t.client = http.DefaultClient
 	return t
+}
+
+// SetHttpClient sets HTTP Client for downloading map tiles
+func (t *TileFetcher) SetHttpClient(client *http.Client) {
+	t.client = client
 }
 
 // SetUserAgent sets the HTTP user agent string used when downloading map tiles
@@ -112,7 +119,7 @@ func (t *TileFetcher) download(url string) ([]byte, error) {
 	req, _ := http.NewRequest("GET", url, nil)
 	req.Header.Set("User-Agent", t.userAgent)
 
-	resp, err := http.DefaultClient.Do(req)
+	resp, err := t.client.Do(req)
 	if err != nil {
 		return nil, err
 	}

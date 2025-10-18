@@ -13,6 +13,7 @@ import (
 	"image/draw"
 	"log"
 	"math"
+	"net/http"
 	"strings"
 	"sync"
 
@@ -48,6 +49,8 @@ type Context struct {
 	cache        TileCache
 
 	overrideAttribution *string
+
+	client *http.Client
 }
 
 // NewContext creates a new instance of Context
@@ -64,7 +67,12 @@ func NewContext() *Context {
 	t.online = true
 	t.tileProvider = NewTileProviderOpenStreetMaps()
 	t.cache = NewTileCacheFromUserCache(0777)
+	t.client = http.DefaultClient
 	return t
+}
+
+func (m *Context) SetClient(client *http.Client) {
+	m.client = client
 }
 
 // SetTileProvider sets the TileProvider to be used
@@ -642,6 +650,7 @@ func (m *Context) renderLayer(gc *gg.Context, zoom int, trans *Transformer, tile
 	tiles := (1 << uint(zoom))
 	fetchedTiles := make(chan *Tile)
 	t := NewTileFetcher(provider, m.cache, m.online)
+	t.SetHttpClient(m.client)
 	if m.userAgent != "" {
 		t.SetUserAgent(m.userAgent)
 	}
